@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document>
+
+<document-meta-info>
+	<title>IntraLibrary PowerLink for Blackboard Vista 4 - Users' Guide</title>
+	<attribute name="Company"><a href="http://www.intrallect.com">Intrallect Ltd</a></attribute>
+</document-meta-info>
+
+<!-- formating info -->
+<document-formatting-info>
+	<stylesheet url="style.css" />
+   <stylesheet-fo url="style.css"/>
+	<left-margin>40pt</left-margin>
+	<right-margin>40pt</right-margin>
+	<top-margin>60pt</top-margin>
+	<bottom-margin>25pt</bottom-margin>
+	<generate-section-numbers>yes</generate-section-numbers>
+	<header-height>100pt</header-height>
+	<footer-height>40pt</footer-height>
+</document-formatting-info>
+
+<!-- document header -->
+<document-header>
+<table width="100%">
+<tr><td align="left"><img src="smallintralibrary.gif" alt="intraLibrary"/></td>
+<td valign="middle" align="right"><b>IntraLibrary PowerLink for Blackboard Vista 4 - Users' Guide</b></td></tr>
+</table>
+<hr size="1" noshade="true" />
+</document-header>
+
+<document-body>
+
+<!-- meta info -->
+<table-of-content>
+
+<link href="#1">Introduction</link>
+<link href="#2">Using intraLibrary PowerLink
+   <link href="#2.1">Creating a Content Link</link>
+   <link href="#2.2">Working with Content Links</link>
+   <link href="#2.3">Search Query Syntax</link>
+</link>
+
+</table-of-content>
+
+<section name="1" label="Introduction">
+
+<p>The intraLibrary PowerLink for Blackboard Vista 4 allows course designers to search an intraLibrary repository while logged into Blackboard, and to quickly create links to intraLibrary content within their Blackboard courses.</p>
+
+<p>This guide explains how course designers and instructors can use intraLibrary PowerLink in Blackboard Vista 4.  The guide assumes that the reader is familiar with Blackboard Vista.  For information on how to install and configure intraLibrary PowerLink, please refer to the <b><i>IntraLibrary PowerLink for Blackboard Vista 4 - Installation Guide</i></b>. </p>
+
+</section>
+
+<section name="2" label="Using intraLibrary PowerLink">
+
+<p>The three levels of user within Blackboard Vista can use intraLibrary PowerLink as follows:</p>
+
+   <ol>
+      <li><b>Course Designers</b> - Course designers can use an intraLibrary PowerLink to:
+           <ul>
+               <li>Search an intraLibrary repository from within Blackboard Vista, without having to log into the repository</li>
+               <li>Create a link from their course to content inside intraLibrary</li>
+               <li>Organise content links into folders within a course section</li>
+           </ul>
+<p>They can also:</p>
+           <ul>
+               <li>View technical data about content links</li>
+               <li>Edit the title and description of content links and folders</li>
+               <li>Give a content link its own link icon</li>
+               <li>Hide the link so that students can's see it<br/><br/></li>
+           </ul>
+      </li>
+
+
+
+      <li><b>Instructors</b> - Instructors can:
+           <ul>
+               <li>View content links to intraLibrary content without having to log into intraLibrary</li>
+               <li>View folders with content links in them</li>
+               <li>Edit the descriptions of content links and content link folders</li>
+               <li>Make folders and content links hidden, and make hidden ones visible again<br/><br/></li>
+           </ul>
+      </li>
+
+
+      <li><b>Students</b> - Students can see intraLibrary content links created using intraLibrary PowerLink within their Blackboard courses.  They can read the descriptions of the links, and click on the links to directly view the content without having to log into intraLibrary. </li>
+
+   </ol>
+
+</section>
+
+<section name="2.1" label="Creating a Content Link">
+
+<p>A course designer can create a link to content that is held within intraLibrary as follows:</p>
+<ol>
+   <li>Log into your installation of Blackboard Vista.</li>
+
+   <li>From your course list, select the course you'd like to add a content link to.</li>
+
+   <li>In the left-hand toolbar, under <i>Course Tools</i> click on <i>Course Content</i>.  You will see all of the content for that course in the right-hand pane, with some tools along the top.</li>
+
+   <li>Click <i>Add Content Link</i> at the top of the right-hand pane to view the drop-down menu of content link options.  In this drop-down menu you will see any intraLibrary repository PowerLink options that your local system administrator has set up for you.  Check your local administrator's guidelines to see what they have called your local intraLibrary PowerLink option.  In the example shown in <i>Image 2.1</i> the local PowerLink is called <i>IntraLibrary Link</i>. <br/>
+    <img src="images/add_content.jpg" alt="Adding content to a course."/>
+    <p><b>Image 2.1: Adding a content link - selecting intraLibrary PowerLink</b></p>
+   </li>
+
+   <li>When you select your local PowerLink from the drop-down menu as shown in the illustration, a box showing further options for that PowerLink will open up within the drop-down menu. </li>
+
+   <li>To create a new content link, click on the button within the box that says something like "Create IntraLibrary Link".  Alternatively, if you have previously added content links, they will appear below this button under "Select from inventory".  You can click an existing content link from here and add it to the course.</li>
+
+   <li>For new content links, the next step is to provide a title for the link as shown in <i>Image 2.2</i>.<br/>
+      <img src="images/create_link.jpg" alt="Creating a content link."/>
+      <p><b>Image 2.2: Providing a title for your intraLibrary content link</b></p>
+   </li>
+
+   <li>Once you have created a title for the content link, click the button below to begin your search.  In <i>Image 2.2</i> the button to create your search is called <i>Find Learning Object</i>.  Note that the button could be labelled differently in your installation as the label is provided by your Blackboard server administrator.</li>
+   <li>Enter your search criteria and click <i>search</i>.  Google-like queries are supported, including wildcards and logical operators.  For more information, see <i>section 2.3</i> on Search Query Syntax.<br/>
+    <img src="images/search_page.jpg" alt="The default search page"/>
+    <p><b>Image 2.3: Search Page</b></p>
+    </li>
+
+   <li>A list of resources matching your search will appear, with each resource's title, description, creation date, and technical format, as shown in <i>Image 2.4</i>.<br/>
+      <img src="images/search_results.jpg" alt="The default search results page"/>
+      <p><b>Image 2.4: Search Results Page</b></p>
+   </li>
+
+   <li>
+      To create a content link to a particular resource, click <i>Add to Blackboard</i>.  A link to the intraLibrary resource will appear in your Blackboard course.
+   </li>
+</ol>
+
+<p>To test the link you have just created, you can switch to teach or student view and click on the link to view the resource.</p>
+
+</section>
+
+<section name="2.2" label="Working with Content Links">
+
+<p><b>Course designers working with content links:</b></p>
+
+<p>A course designer can do the following with a content link by clicking the down-arrow next to the link to open a drop-down menu of tools:</p>
+<ol>
+   <li>Select "Customize Link" to edit the title given to the content link; create and edit a description for the link; and add a custom icon for the link.  All of these enable the course designer to determine what a student sees when viewing their course content.</li>
+   <li>Select "Move to Folder" to organise content links within folders which themselves have names and descriptions that students can see.  Folders need to be created before content is moved into them: this is done by selecting "Create Folder" at the top of the right-hand content pane.</li>
+   <li>Select "Remove Link" to remove the content link from the course completely.</li>
+   <li>Move where the content link appears in the student's content page by clicking the "move" arrows at the bottom of the drop-down menu for that link.</li>
+   <li>View technical details for that content link by selecting "Edit Properties" (in most cases the course designer will not be able to edit these properties, only to view them).</li>
+   <li>Select "Preview" to view the resource linked to via the content link.</li>
+   <li>Select "Hide Item" to make the content link invisible to students (it will still be visible to instructors, and they will be able to toggle whether the content is hidden or visible).  If the resource is hidden, it may be made visible again by selecting "Show Item".<br/><br/></li>
+</ol>
+
+<p><b>Instructors working with content links:</b></p>
+
+<p>An instructor can do the following with a content link by clicking the down-arrow next to the link to open a drop-down menu of tools:</p>
+<ol>
+   <li>Select "Customize Link" to create and edit a description for the link.  These descriptions are visible to students.</li>
+   <li>Select "Hide Item" to make the resource invisible to students (it will still be visible to course designers, and they will be able to toggle whether the content is hidden or visible).  If the resource is hidden, it may be made visible again by selecting "Show Item".</li>
+</ol>
+</section>
+
+<section name="2.3" label="Search Query Syntax">
+
+<p>The intraLibrary PowerLink search is very easy to use. At its most simple, you can type in a keyword and a search will be carried out on that term.  All searches are case-insensitive.</p>
+
+<p>To carry out a more refined search, type appropriate keywords or phrases into the search box separated by any of the supported logical operators (<i>AND</i> or <i>OR</i> or <i>NOT</i>), and click "Search".</p>
+
+      <strong>Keyword Search</strong><br/>
+      <p>You can search for objects which match a keyword, or list of keywords, such as:<br/><br/>
+         <i>history OR Rome OR Caesar</i> (returns resources containing any of these terms: a broad search)<br/><br/>
+
+	      <i>history AND Rome AND Caesar</i> (returns resources containing all of these terms: a narrow search)<br/><br/>
+
+	      <i>Rome NOT Caesar</i> (returns resources containing the term Rome, but which don't contain the term "Caesar" anywhere in them: a narrow search)<br/><br/>
+
+      </p>
+      <strong>Phrase Search</strong><br/>
+      <p>You can search for objects which match a particular phrase by surrounding the terms in quotes, such as:<br/><br/>
+	      <i>"history of Rome"</i><br/><br/>
+      </p>
+      <strong>Grouping</strong><br/>
+      <p>With the use of parentheses you can build advanced queries:<br/><br/>
+         <i>(history OR rome) AND caesar</i><br/><br/>
+      </p>
+      <strong>Wild card operators</strong><br/>
+      <p>You can use <i>*</i> as wildcard character in search queries, such as: <br/><br/>
+	   <i>Rom*</i><br/><br/>
+	   This example would match any word that started with "Rom", including Rome, Roman, Romany etc.<br/><br/>
+	   The <i>?</i> character is also a wildcard character, used to match a single character only.  For example, you could search for <pre><i>Br?an</i></pre> This would match "Brian" and "Bryan" but not "Brendan".<br/><br/>
+	   </p>
+</section>
+
+
+</document-body>
+
+<!-- document footer -->
+<document-footer>
+<table width="100%">
+<tr><td align="left"><page-number /></td></tr></table>
+</document-footer>
+
+</document>

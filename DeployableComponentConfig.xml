@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployablecomponents>
+    <component>
+        <version>1.0.8</version>
+        <powerlinks-version>2.0</powerlinks-version>
+        <id>IntraLibrarySearchModule</id>
+        <type>sso</type>
+        <classname>com.intrallect.webct.authentication.IntraLibrarySearchModule</classname>
+        <author>Intrallect LTD</author>
+        <description>Allows designers to search for and link to learning objects from a IntraLibrary repository.</description>
+		<settings-structure>
+			<settings-group name="IntraLibrarySearchModule"
+			    	type="service"
+			    	label="IntraLibrary Search Module">
+
+				<!-- REQUIRED ELEMENTS -->
+
+				<setting-element name="controlflag"
+								 label="security.authNModule.controlFlag"
+								 data-type="String"
+								 presentation-type="ComboBox"
+								 inheritable="true"
+								 optional="false"
+								 read-only="true">
+					       <setting-value key="sufficient" default="true"  label="security.authNModule.controlFlag.sufficient" />
+					       <setting-value key="required"   default="false" label="security.authNModule.controlFlag.required"   />
+					       <setting-value key="requisite"  default="false" label="security.authNModule.controlFlag.requisite"  />
+					       <setting-value key="optional"   default="false" label="security.authNModule.controlFlag.optional"   />
+			    </setting-element>
+
+			    <setting-element name="mode"
+						         label="security.authNModule.mode"
+						         data-type="String"
+						         presentation-type="ComboBox"
+						         inheritable="true"
+						         optional="false"
+						         read-only="true">
+					        <setting-value key="incoming" default="false" label="security.authNModule.mode.incoming" />
+					        <setting-value key="outgoing" default="false"  label="security.authNModule.mode.outgoing" />
+					        <setting-value key="both" default="true"  label="security.authNModule.mode.both" />
+			    </setting-element>
+
+				<setting-element name="operationalTimeout"
+								 label="security.authNModule.operationalTimeout"
+								 data-type="Integer"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="false"
+								 default-value="10"/>
+
+				<setting-element name="urlpattern"
+								 label="URL pattern"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="true"
+								 default-value="intralibrarysearch"/>
+
+				<setting-element name="order"
+								 label="Order"
+								 data-type="Integer"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="true"
+								 default-value="1"/>
+
+				<setting-element name="openInNewWindow"
+					 label="security.authNModule.openInNewWindow"
+					 data-type="Boolean"
+					 presentation-type="RadioGroup"
+					 inheritable="true"
+					 optional="false"
+					 read-only="false">
+					 <setting-value key="true" default="false" label="true"/>
+					 <setting-value key="false" default="true" label="false"/>
+				</setting-element>
+
+            <setting-element name="repository_name"
+								 label="IntraLibrary Repository Name"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="false"
+								 default-value="IntraLibrary Repository" />
+
+            <setting-element name="repository_url"
+								 label="Repository search URL"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="false"
+								 default-value="" />
+
+            <setting-element name="collection_names"
+                        label="Collection Names to filter on (comma-separated)"
+                        data-type="String"
+                        presentation-type="TextField"
+                        inheritable="true"
+                        optional="true"
+                        read-only="false"
+                        default-value="" />
+
+            <setting-element name="collection_identifiers"
+                        label="Collection Identifiers to filter on (comma-separated)"
+                        data-type="String"
+                        presentation-type="TextField"
+                        inheritable="true"
+                        optional="true"
+                        read-only="false"
+                        default-value="" />
+
+            <setting-element name="collection_authentication_tokens"
+                        label="Collection Authentication Tokens (comma-separated)"
+                        data-type="String"
+                        presentation-type="TextField"
+                        inheritable="true"
+                        optional="true"
+                        read-only="false"
+                        default-value="" />
+
+            <setting-element name="search_page"
+								 label="Search page"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="true"
+								 default-value="pages/searchPage.vm" />
+
+				<setting-element name="results_page"
+								 label="Results page"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="false"
+								 read-only="true"
+								 default-value="pages/resultsPage.vm" />
+
+             <setting-element name="number_per_page"
+                        label="Number of results per page"
+                        data-type="String"
+                        presentation-type="TextField"
+                        inheritable="true"
+                        optional="true"
+                        read-only="false"
+                        default-value="10" />
+
+            <setting-element name="jar_base"
+								 label="jar base"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="true"
+								 read-only="false"
+								 default-value="./deployablecomponents/IntraLibrarySearchModule"/>
+
+				<setting-element name="learning_object_url"
+								 label="Learning object URL"
+								 data-type="String"
+								 presentation-type="TextField"
+								 inheritable="true"
+								 optional="true"
+								 read-only="false"/>
+
+                <!-- Required Settings for Assisted Configuration -->
+ 				<setting-element name="assistedConfig"
+            					 label="Assisted Config"
+            					 data-type="Boolean"
+            					 presentation-type="RadioGroup"
+            					 inheritable="true"
+            					 optional="false"
+            					 read-only="true">
+            					 <setting-value key="true" default="true" label="true"/>
+            					 <setting-value key="false" default="false" label="false"/>
+				</setting-element>
+
+				<setting-element name="assistedConfigButtonName"
+        						 label="Button label"
+        						 data-type="String"
+        						 presentation-type="TextField"
+        						 inheritable="true"
+        						 optional="true"
+        						 read-only="false"
+        						 default-value="Find Learning Object"/>            
+         </settings-group>
+		</settings-structure>
+    </component>
+</deployablecomponents>

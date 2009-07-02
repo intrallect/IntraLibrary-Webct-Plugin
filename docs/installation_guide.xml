@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document>
+
+<document-meta-info>
+	<title>IntraLibrary Powerlink for Blackboard Vista 4 - Installation Guide</title>
+	<attribute name="Author"><a href="mailto:support@intrallect.com">Allan Dewar</a></attribute>
+	<attribute name="Company"><a href="http://www.intrallect.com">Intrallect Ltd</a></attribute>
+</document-meta-info>
+
+<!-- formating info -->
+<document-formatting-info>
+	<stylesheet url="style.css" />
+   <stylesheet-fo url="style.css"/>
+	<left-margin>40pt</left-margin>
+	<right-margin>40pt</right-margin>
+	<top-margin>60pt</top-margin>
+	<bottom-margin>25pt</bottom-margin>
+	<generate-section-numbers>yes</generate-section-numbers>
+	<header-height>100pt</header-height>
+	<footer-height>40pt</footer-height>
+</document-formatting-info>
+
+<!-- document header -->
+<document-header>
+<table width="100%">
+<tr><td align="left"><img src="smallintralibrary.gif" alt="intraLibrary"/></td>
+<td valign="middle" align="right"><b>IntraLibrary Powerlink for Blackboard Vista 4 - Installation Guide</b></td></tr>
+</table>
+<hr size="1" noshade="true" />
+</document-header>
+
+<document-body>
+
+<!-- meta info -->
+    <table-of-content>
+
+      <link href="#introduction">Introduction</link>
+      <link href="#installing">Installing the Plugin</link>
+      <link href="#configuring">Configuring the Plugin
+	<link href="#module">Activate the System Integration Module</link>
+	<link href="#proxy">Create the Proxy Tool</link>
+	<link href="#enable">Enable the Tool</link>
+      </link>
+      <link href="#repository">Configuring your IntraLibrary Repository</link>
+      <link href="#customising">Customising the Plugin Interface</link>
+      <link href="#upgrading">Redeploying the Plugin after Customisation</link>
+
+    </table-of-content>
+
+<section name="introduction" label="Introduction">
+<p>The IntraLibrary Powerlink allows Blackboard Vista 4 users to search an intraLibrary learning object repository and create hyperlinks in Blackboard courses to content held within intraLibrary.  The plugin has been tested against and is supported on Blackboard Vista 4 AP2.  This document explains how to install and configure the plugin in Blackboard Vista 4, and explains how to alter the look and feel of the plugin interfaces.  Should further details be required on installing the plugin, please refer to the section titled "Administering Blackboard Deployable components and ProxyLinks Proxy tools" in the Blackboard Administrator guide or contact <a href="mailto:support@intrallect.com">support.</a></p>
+</section>
+
+<section name="installing" label="Installing the Powerlink Plugin">
+   <ol>
+      <li>Log-in to the Blackboard application server machine with the same account used to install the Blackboard software.</li>
+      <li>Transfer the IntraLibrarySearchModule.zip file to the server and unzip it. It contains the following jar files:
+      <ul>
+         <li>IntraLibrarySearchModule.jar</li>
+         <li>jdom.jar</li>
+         <li>velocity-1.4.jar</li>
+         <li>licenceHandler.jar</li>
+      </ul>
+      </li>
+      <li>Create a subdirectory under the WebCTDomain/deployablecomponents directory of the Blackboard domain with the following name: IntraLibrarySearchModule.</li>
+      <li>Copy the contents of IntraLibrarySearchModule.zip file into the newly created subdirectory.</li>
+      <li>If you would like to log debug statements from the IntraLibrary Plugin, add the following to the Blackboard log4j.properties file:<br/><br/>
+log4j.category.com.intrallect.webct=debug, intrallect<br/><br/>
+log4j.appender.intrallect=org.apache.log4j.RollingFileAppender<br/>
+log4j.appender.intrallect.File=logs/intralibrarySearchModule.log<br/>
+log4j.appender.intrallect.MaxFileSize=5MB<br/>
+log4j.appender.intrallect.MaxBackupIndex=20<br/>
+log4j.appender.intrallect.Append=true<br/>
+log4j.appender.intrallect.layout=org.apache.log4j.xml.XMLLayout<br/><br/>
+      </li>
+      <li>Stop and restart Blackboard to detect the PowerLink. Depending on what port it runs on, you may need to log-in as the root/admin user to do this.</li>
+   </ol>
+</section>
+
+
+    <section name="configuring" label="Configuring the Plugin">
+    </section>
+
+    <section name="module" label="Activate the System Integration Module">
+
+	  <ol>
+	    <li>Log-in to Blackboard as the <i>server administrator</i></li>
+	    <li>If it is not already selected, click the <i>Administration</i> tab, and then click the <i>Utilities</i> tab.</li>
+	    <li>Click <i>Settings</i>.</li>
+	    <li>Under <i>System Integration</i>, locate and click on <i>Deployable Components</i>.</li>
+	    <li>If <i>Allow Deployable Components</i> is not set to True, set it to True and click <i>Save Values</i>. Otherwise, click <i>Cancel</i>.</li>
+
+	  </ol>
+    </section>
+
+    <section name="proxy" label="Create the Proxy Tool">
+	  <ol>
+	    <li>Under <i>System Integration</i>, locate and click on <i>IntraLibrarySearchModule</i>.</li>
+	    <li>Set <i>Enable</i> to True and click <i>Save Values</i>.</li>
+	    <li>Click the <i>ProxyLinks Proxy Tools</i> tab.</li>
+	    <li>Click <i>Create Proxy Tool</i></li>
+	    <li>Select <i>IntraLibrary Search Module</i> as the authentication module and click next.</li>
+
+      <li>Configure Required settings.
+         <table width="80%" border="1" cellpadding="0" cellspacing="0">
+            <tr><td width="20%"><strong>Proxy tool name</strong></td><td width="75%">Enter a name for the component.  E.g.: IntraLibrary Link</td></tr>
+            <tr><td><strong>Version</strong></td><td>Enter 1.0</td></tr>
+            <tr><td><strong>Description</strong></td><td>Enter a description.  E.g. Search the intraLibrary repository and link learning objects to courses</td></tr>
+            <tr><td><strong>Operational Timeout</strong></td><td>This is the number of seconds Blackboard will wait before assuming the search failed.  We recommend you use the default value provided</td></tr>
+            <tr><td><strong>Open in New Window</strong></td><td>Specifies whether the search content is displayed in a new browser.</td></tr>
+            <tr><td><strong>IntraLibrary Repository Name</strong></td><td>This is the name of intraLibrary repository you wish to search and appears on the user interface.  E.g. My Company IntraLibrary</td></tr>
+            <tr><td><strong>Repository search URL</strong></td><td>This is the URL to the intraLibrary repository you wish to search.  E.g. http://intralibrary.your-domain.com </td></tr>
+            <tr><td><strong>Collection Names to filter on</strong></td><td>If you wish to confine searches to specific collections within the intraLibrary repository specify the collection names as a comma separated list, otherwise leave this field blank.<br/>E.g. images, geography</td></tr>
+            <tr><td><strong>Collection Identifiers to filter on</strong></td><td>Instead of collection names you may optionally provide a list of comma-separated collection identifiers to confine searches to specific collections within the intraLibrary repository.</td></tr>
+            <tr><td><strong>Collection Authentication Tokens</strong></td><td>If any of the collections within your intraLibrary repository require authentication tokens for external searching, you will need to provide these as a comma-separated list.</td></tr>
+            <tr><td><strong>Search Page</strong></td><td>This is the search page used by the IntraLibrarySearchModule.  Please refer to <i>section 5</i> should you wish to use an alternative page template.</td></tr>
+            <tr><td><strong>Results Page</strong></td><td>This is the results page used by the IntraLibrarySearchModule.  Please refer to <i>section 5</i> should you wish to use an alternative page template.</td></tr>
+            <tr><td><strong>Number of Results per Page</strong></td><td>This is the maximum number of search results that will be shown per page.</td></tr>
+            <tr><td><strong>jar base</strong></td><td>Enter the path to the IntraLibrarySearchModule.jar file not including the filename.  For Vista 4 and CE 6 or later, the path must be relative to the Blackboard domain directory, for example:<br/>./deployablecomponents/IntraLibrarySearchModule.</td></tr>
+            <tr><td><strong>Learning object URL</strong></td><td>Leave this field blank.</td></tr>
+            <tr><td><strong>Button label</strong></td><td>Enter the text label of the button that course designers click to search your IntraLibrary Repository. </td></tr>
+         </table>
+         <img src="images/configuration_screen_shot.jpg" alt="Create Proxy Tool Screen"/>
+         <p>Image 3.1. The ProxyLinks Tool creation page in Blackboard Vista 4.</p>
+      </li>
+      <li>Click <i>save</i>.  (Do not select <i>release to My Blackboard</i>).</li>
+
+	  </ol>
+
+    </section>
+    
+    <section name="enable" label="Enable the Proxy Tool">
+      <ol>
+	<li>Click the <i>Utilities</i> tab, then <i>Settings</i>.</li>
+	<li>Under <i>Tools</i> click the Proxy Tool you have just created.  (If you called the proxy tool "IntraLibrary Link", it will be listed as "IntraLibary Link").</li>
+	<li>If the <i>Enable Tool</i> setting is locked, select "unlock this setting", click "save values", and go back to 2.
+	</li>
+	<li>If <i>Enable Tool</i> is set to "false", set it to "true" and click <i>Save Values</i>.  Otherwise, click <i>Cancel</i>.
+	</li>
+	<li>Log out of Blackboard as <i>server administrator</i> and log in as a <i>course designer</i>.  The IntraLibrarySearchModule will now be available as a means of adding content to your course.  Please refer to the users guide for information on using the plugin.</li>
+      </ol>
+    </section>
+
+
+<section name="repository" label="Configuring your intraLibrary Repository">
+   <p>In order for the IntraLibrary Blackboard plugin to be able to search your intraLibrary repository, you need to ensure that the repository is searchable by external systems.  This is configured within the intraLibrary repository on a collection by collection basis.  To make your repository externally searchable, perform the following steps:</p>
+
+   <ol>
+      <li>Login to your intraLibrary repository as an administrator.</li>
+      <li>Click the <i>Admin Tools</i> tab, then <i>Collections</i>.  A screen listing all collections in the repository will appear.</li>
+      <li>Choose a collection and then click <i>Edit Properties</i>.</li>
+      <li>On the <i>Update Collection Details</i> (shown in Image 4.1)  ensure that the following checkboxes are selected:
+      <ul>
+         <li><i>Allow published content in this collection to be searched by external systems.</i></li>
+         <li><i>Allow public preview of objects.</i></li>
+      </ul></li>
+      <li>Click Save Collection Details.</li>
+     <li> Repeat steps 3 and 4 for each collection whose content is to be searchable by the Blackboard plugin.</li>
+   </ol>
+      <p>For more information see the section "Controlling Remote Access to Collections" (4.5) of the Administrator's Guide for intraLibrary. 
+      </p>
+
+   <img src="images/collection_permissions.jpg" alt="Update Collection Permissions Screenshot."/>
+   <p>Image 4.1 Screenshot of the IntraLibrary Update Collection Details page.</p>
+</section>
+
+
+<section name="customising" label="Customising the Plugin Interface">
+   <p>When configuring the IntraLibrarySearchModule as a proxy link tool within Blackboard you are able to specify the search and search results pages. (Refer to section 3). The two default pages reside in a directory called <i>pages</i> within IntraLibrarySearchModule.jar:
+      <ul>
+         <li>searchPage.vm - Template used when generating the actual search page.  (Refer to image 5.1)</li>
+         <li>resultsPage.vm - Template used when generatnig the search results page.  (Refer to image 5.2)</li>
+         <li>styles.css - CSS style sheet for both the search and the search results pages.</li>
+      </ul>
+   </p>
+
+   <p>You can edit these templates and the css style sheet to suite your own Blackboard installation.  You can also provide alternative templates so long as you configure the tool with the new pages. Note that the modified templates and/or any templates you provide must reside inside IntraLibrarySearchModule.jar.
+      </p>
+
+    <img src="images/search_page.jpg" alt="The default Search Page"/>
+    <p>Image 5.1. The default Search Page</p>
+
+   <img src="images/search_results.jpg" alt="The default Search Results Page"/>
+   <p>Image 5.2. The default Search Results Page</p>
+
+      <p><b>Please Note</b>: Pages that have been modified or replaced are not covered by Intrallect's standard support and maintenance agreement for this product.</p>
+
+</section>
+
+<section name="upgrading" label="Redeploying the Plugin after Customisation">
+    <p>Should you modify the contents of IntraLibrarySearchModule.jar, you must take care when redeploying the plugin otherwise Blackboard will not detect any changes.  For details on how to upgrade a power link you should refer to the Blackboard Administrators guide.  However, the following
+        instructions should suffice:
+      <ul>
+         <li>Stop the Blackboard server.</li>
+         <li>In IntraLibrayrSearchModule.jar/DeployableComponentConfig.xml locate the version element and increment its value.</li>
+         <li>Restart the Blackboard server.</li>
+         <li>If you do not increment the version number in IntraLibrayrSearchModule.jar/DeployableComponentConfig.xml, Blackboard will not detect that IntraLibrayrSearchModule.jar has been modified and your changes will be ignored.</li>
+      </ul>
+   </p>
+
+   <p><b>Please Note</b>: Any modifications to IntraLibrarySearchModule.jar are not covered by Intrallect's standard support and maintenance agreement for this product.</p>
+
+</section>
+
+
+
+
+</document-body>
+
+<!-- document footer -->
+<document-footer>
+<table width="100%">
+<tr><td align="left"><page-number /></td></tr></table>
+</document-footer>
+
+</document>

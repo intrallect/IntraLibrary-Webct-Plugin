@@ -1,0 +1,168 @@
+#macro( getAssistCfgParams )
+<input type="hidden" name="userId" value="$userId"/>
+<input type="hidden" name="instanceName" value="$instanceName"/>
+<input type="hidden" name="showOpenInNewWinOpt" value="$showOpenInNewWinOpt"/>
+<input type="hidden" name="newWinVal" value="$newWinVal"/>
+<input type="hidden" name="toolname" value="$toolname"/>
+<input type="hidden" name="toolversion" value="$toolversion"/>
+<input type="hidden" name="todo" value="$todo"/>
+<input type="hidden" name="id" value="$id"/>
+<input type="hidden" name="returnURL" value="$returnURL" />
+#end
+
+#set( $results = $search_result.getLearningObjects() )
+#set( $totalMatches = $search_result.getNumberOfRecords() )
+#set( $nextPageStartIndex = $search_result.getNextStartRecord() )
+#set( $pageSize = $results.size() )
+#set( $endIndex = $nextPageStartIndex - 1 )
+#set( $startIndex = $currentPageNumber * $number_per_page - $number_per_page + 1 )
+#set( $pageCount = $totalMatches / $number_per_page )
+#set( $remainder = $totalMatches % $number_per_page )
+
+#macro( insertPageNavigation )
+   #if( $remainder > 0 )
+      #set( $pageCount = $pageCount + 1 )
+   #end
+   #if( $totalMatches > $number_per_page )
+      <td>|</td>
+      <td>Page
+         #foreach( $page in [1..$pageCount] )
+            #if( $page == $currentPageNumber )
+               $page
+            #else
+               <a href="javascript:changePage('$page')">$page</a>
+            #end
+         #end
+      </td>
+      #if( $currentPageNumber > 1 )
+         <td>
+         |
+         </td>
+         <td>
+            #set( $page= $currentPageNumber - 1 )
+            <a href="javascript:changePage('$page')">Prev</a>
+         </td>
+      #end
+      #if( $totalMatches >= $nextPageStartIndex )
+         <td>
+            |
+         </td>
+         <td>
+            #set( $page= $currentPageNumber + 1 )
+            <a href="javascript:changePage('$page')">Next</a>
+         </td>
+      #end
+   #end
+#end
+
+<html>
+<head>
+   <style type="text/css">
+      <!--
+         #include( 'pages/styles.css' )
+      -->
+   </style>
+   <script language="javascript">
+      <!--
+         function submitLearningObjectUrl( learningObjectUrl )
+         {
+            window.location = '$returnUrl&proxyToolCallbackGUID=$proxyToolCallbackGUID&userId=$userId&learning_object_url='+learningObjectUrl;
+            return true;
+         }
+         function changePage( pageNumber )
+         {
+            document.changePageForm.page_number.value = pageNumber;
+            document.changePageForm.submit();
+         }
+
+         var newWindow;
+         function openInNewWindow( url )
+         {
+	         newWindow=window.open( url,'','height=800,width=600, resizable=yes, scrollbars=yes, toolbar=yes, location=yes');
+	         if (window.focus) { newWindow.focus(); }
+         }
+
+      -->
+   </script>
+</head>
+<body bgcolor="#FFFFFF">
+<div style="margin-top: 20px;"><a href="http://www.intrallect.com" ><img src="http://www.intrallect.com/design/intrallect/images/intraLibrary.gif" border="0" alt="IntraLibrary"/></a></div>
+<h1>$repository_name Search Results</h1>
+<p>Results for query:</p>
+<p id="query_box">
+   $search_term
+</p>
+<div class="nav">
+   <table>
+      <tr>
+         #if( $totalMatches == 0 )
+         <td>No matches found.</td>
+         #else
+            <td><p>Results $startIndex to $endIndex of $totalMatches</p></td>#insertPageNavigation()
+         #end
+      </tr>
+   </table>
+   <form enctype="application/x-www-form-urlencoded" name="topNavigation" method="post" action="/webct/ptAssistConfig.dowebct" >
+      <input type="hidden" name="command" value=""/>
+      #getAssistCfgParams()
+      <input type="hidden" name="start_index" value="$startIndex"/>
+      <input type="submit" name="searchIntraLibrary" value="New Search"/>
+   </form>
+
+</div>
+<table border="0" id="results_table">
+   #foreach( $result in $results )
+   <tr>
+      <td valign="top">
+         #if( $result.hasValidUrl() )
+            <button onclick="submitLearningObjectUrl('$result.getEncodedUrl()')">Add to Blackboard</button>
+         #else
+            <button class="disabledButton" onclick="javascript:alert('Resource not available');" >Add to Blackboard</button>
+         #end
+      </td>
+      <td valign="top">
+         <div class="summary">
+            #if ( $result.getTitle() )
+                #set( $resultTitle = $result.getTitle() )
+            #else #set( $resultTitle = "No title available" ) #end
+            #if( $result.hasValidUrl() )
+               #set( $titleUrl = $result.getUrl().replaceAll('&', '&amp;') )
+               <h2><a href="javascript:openInNewWindow('$titleUrl');">$resultTitle</a></h2>
+            #else 
+               <h2>$resultTitle</h2>
+            #end
+            #if( $result.getDescription() )
+                <p><span class="description">$result.getDescription()</span></p>
+            #end
+         </div>
+      </td>
+      <td valign="top">
+         <p>Created: #if( $result.getCreatedDateInFormat( 'dd MMMMM yyyy' ) ) $result.getCreatedDateInFormat( 'dd MMMMM yyyy' ) #else No date available #end</p>
+      </td>
+       <td valign="top">
+         <p>Technical Format: #if( $result.getTechnicalFormat() ) $result.getTechnicalFormat() #else n/a #end</p>
+      </td>
+   <tr>
+   #end
+</table>
+
+#if( $totalMatches > 0 )
+   <div class="nav">
+      <form enctype="application/x-www-form-urlencoded" name="bottomNavigation" method="post" action="/webct/ptAssistConfig.dowebct" >
+         <input type="hidden" name="command" value=""/>
+         #getAssistCfgParams()
+         <input type="hidden" name="start_index" value="$start_index"/>
+         <input type="submit" name="searchIntraLibrary" value="New Search"/>
+      </form>
+      <div style="margin-top: 20px;"><a href="http://www.intrallect.com" ><img src="http://www.intrallect.com/design/intrallect/images/intraLibrary.gif" border="0" alt="IntraLibrary"/></a></div>
+   </div>
+
+   <form enctype="application/x-www-form-urlencoded" name="changePageForm" method="post" action="/webct/ptAssistConfig.dowebct" >
+      <input type="hidden" name="command" value="Search"/>
+      #getAssistCfgParams()
+      <input type="hidden" name="page_number" value=""/>
+      <input type="hidden" name="search_term" value="$search_term"/>
+   </form>
+#end
+</body>
+</html>

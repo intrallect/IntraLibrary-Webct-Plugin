@@ -1,0 +1,103 @@
+<?xml version='1.0'?>
+<project name="IntraLibrarySearchModule" default="build" basedir=".">
+
+   <property name="src" value="src"/>
+   <property name="classes" value="classes"/>
+   <property name="lib" value="lib"/>
+   <property name="distribution" value="distribution"/>
+   <property name="compiletimelib" value="compiletimelib"/>
+   <property name="pages" value="pages"/>
+   <property name="src_pages" value="pages"/>
+   <property name="dest_pages" value="classes/pages"/>
+   <property name="build.docs.dir" value="builddocs" />
+   <property name="aurigadoc.dir" value="aurigadoc"/>
+   <property name="aurigadoc.lib.dir" value="${aurigadoc.dir}/lib"/>
+   <property name="aurigadoc.home" value="${aurigadoc.dir}"/>
+   <property environment="env"/>
+
+   <taskdef resource="aurigadoctask.properties">
+      <classpath>
+         <dirset dir="${aurigadoc.home}/bin" />
+         <fileset dir="${aurigadoc.home}/lib">
+            <include name="**/*.jar" />
+         </fileset>
+      </classpath>
+   </taskdef>
+
+   <path id="sdk.classpath">
+      <fileset dir="${compiletimelib}">
+         <include name="**/*.jar"/>
+      </fileset>
+      <fileset dir="${lib}">
+         <include name="**/*.jar"/>
+      </fileset>
+   </path>
+
+   <target name="cleanup">
+      <delete dir="${distribution}"/>
+      <delete dir="${classes}"/>
+      <delete file="${lib}/IntraLibrarySearchModule.jar"/>
+   </target>
+
+   <target name="init" depends="cleanup">
+      <mkdir dir="${classes}"/>
+      <mkdir dir="${dest_pages}"/>
+   </target>
+
+   <target name="compile" depends="init">
+      <javac srcdir="${src}" destdir="${classes}">
+         <classpath refid="sdk.classpath"/>
+      </javac>
+   </target>
+
+   <target name="jar" depends="compile">
+      <copy todir="${dest_pages}">
+         <fileset dir="${src_pages}/"/>
+      </copy>
+      <jar destfile="${lib}/IntraLibrarySearchModule.jar">
+         <fileset dir="${classes}/"/>
+         <fileset file="DeployableComponentConfig.xml"/>
+      </jar>
+   </target>
+
+   <target name="build" depends="cleanup, jar, buildDocs">
+      <mkdir dir="${distribution}"/>
+      <copy overwrite="true" file="${lib}/IntraLibrarySearchModule.jar" todir="${distribution}"/>
+      <copy overwrite="true" todir="${distribution}">
+         <fileset dir="${lib}">
+            <include name="*.jar"/>
+         </fileset>
+      </copy>
+
+      <zip  destfile="${distribution}/IntraLibrarySearchModule.zip" basedir="${distribution}"/>
+      <tar  destfile="${distribution}/IntraLibrarySearchModule.tar" basedir="${distribution}" excludes="IntraLibrarySearchModule.zip"/>
+   </target>
+
+   <target name="buildDocs">
+      <echo message="building installation documentation"/>
+
+      <mkdir dir="${build.docs.dir}"/>
+      <mkdir dir="${distribution}/docs"/>
+      <mkdir dir="${distribution}/docs/images"/>
+
+      <copy file="docs/smallintralibrary.gif" todir="${build.docs.dir}"/>
+      <copy file="docs/style.css" todir="${build.docs.dir}"/>
+      <copy overwrite="true" todir="${distribution}/docs/images">
+         <fileset dir="docs/images">
+            <include name="*.jpg"/>
+         </fileset>
+      </copy>
+
+      <aurigadoc format="html" input="docs/installation_guide.xml" output="${build.docs.dir}/installation_guide.html" />
+      <aurigadoc format="pdf" input="docs/installation_guide.xml" output="${build.docs.dir}/installation_guide.pdf" />
+
+      <aurigadoc format="html" input="docs/users_guide.xml" output="${build.docs.dir}/users_guide.html" />
+      <aurigadoc format="pdf" input="docs/users_guide.xml" output="${build.docs.dir}/users_guide.pdf" />
+
+      <copy todir="${distribution}/docs">
+         <fileset dir="${build.docs.dir}"/>
+      </copy>
+
+      <delete dir="${build.docs.dir}"/>
+   </target>
+</project>

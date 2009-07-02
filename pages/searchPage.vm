@@ -1,0 +1,42 @@
+#macro( getAssistCfgParams )
+<input type="hidden" name="userId" value="$userId"/>
+<input type="hidden" name="instanceName" value="$instanceName"/>
+<input type="hidden" name="showOpenInNewWinOpt" value="$showOpenInNewWinOpt"/>
+<input type="hidden" name="newWinVal" value="$newWinVal"/>
+<input type="hidden" name="toolname" value="$toolname"/>
+<input type="hidden" name="toolversion" value="$toolversion"/>
+<input type="hidden" name="todo" value="$todo"/>
+<input type="hidden" name="id" value="$id"/>
+<input type="hidden" name="returnURL" value="$returnURL" />
+#end
+<html>
+<head>
+   <style type="text/css">
+      <!--
+         #include( 'pages/styles.css' )
+      -->
+   </style>
+</head>
+<body bgcolor="#FFFFFF">
+<div style="margin-top: 20px;"><a href="http://www.intrallect.com" ><img src="http://www.intrallect.com/design/intrallect/images/intraLibrary.gif" border="0" alt="IntraLibrary"/></a></div>
+   <form enctype="application/x-www-form-urlencoded" name="searchIntraLibraryForm" method="post" action="/webct/ptAssistConfig.dowebct" >
+      <input type="hidden" name="command" value="searchIntraLibrary"/>
+      #getAssistCfgParams()
+      <input type="hidden" name="start_index" value="1"/>
+      <table>
+         <tr>
+            <td><h1>Search $repository_name</h1></td>
+         </tr>
+      </table>
+      <br/>
+      <table>
+         <tr>
+            <td>General search:</td><td><input type="text" name="search_term" value=""/></td>
+         </tr>
+         <tr>
+            <td><input type="submit" name="searchIntraLibrary" value="Search"/></td>
+         </tr>
+      </table>
+   </form>
+</body>
+</html>
